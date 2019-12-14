@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<decorators defaultdir="/decorators">  <!-- trỏ tới file decorators  -->
+    <!-- Any urls that are excluded will never be decorated by Sitemesh -->
+    <excludes> <!--dinh nghia loai bo  -->
+        <pattern>/api*</pattern> <!-- ký tự đầu là api còn * tất cả đằng sau k quan tâm -->
+    </excludes>
+    
+    <!-- apply Sitemesh default template -->
+    <decorator name="admin" page="admin.jsp">  <!-- admin.jsp la page parent -->
+        <pattern>/admin*</pattern>
+    </decorator>
+    
+    <decorator name="web" page="web.jsp">
+        <pattern>/*</pattern>
+    </decorator>
+    <decorator name="login" page="login.jsp">
+        <pattern>/dang-nhap</pattern>
+    </decorator>
+</decorators>
