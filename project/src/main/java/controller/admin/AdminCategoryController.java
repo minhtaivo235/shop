@@ -39,8 +39,6 @@ public class AdminCategoryController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		CategoryModel categoryModel = FormUtil.toModel(CategoryModel.class, request);
 		String view = "";
-		String messageResponse = "";
-		String alert = "";
 		if (categoryModel.getType().equals("list")) {
 			categoryModel.setListResult(categoryService.findAll());
 			view = "/views/admin/category/category_list.jsp";

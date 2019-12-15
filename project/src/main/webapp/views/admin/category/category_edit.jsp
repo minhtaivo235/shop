@@ -30,7 +30,7 @@
             <div class="form-group">
                 <div class="col-sm-12">
                     <c:if test="${not empty categories.id}">
-                        <input type="button" class="btn btn-white btn-warning btn-bold" value="Cập nhật thể loại" id="btnAddOrUpdate"/>
+                        <input type="button" class="btn btn-white btn-warning btn-bold" value="Cập nhật thể loại" id=btnAddOrUpdate/>
                     </c:if>
                     <c:if test="${empty categories.id}">
                         <input type="button" class="btn btn-white btn-warning btn-bold" value="Thêm thể loại" id="btnAddOrUpdate"/>
@@ -57,12 +57,12 @@
         //data["content"] = editor.getData();
         var id = $('#id').val();
         if (id == "") {
-            addNew(data);
+        	addCategory(data);
         } else {
-            updateNew(data);
+            updateCategory(data);
         }
     });
-    function addNew(data) {
+    function addCategory(data) {
         $.ajax({
             url: '${APIurl}',
             type: 'POST',
@@ -70,16 +70,16 @@
             data: JSON.stringify(data),
             dataType: 'json',
             success: function (result) {
-            	window.location.href = "${CategoryURL}?type=list&message=update_success";
-            	
+            	window.location.href = "${CategoryURL}?type=list&message=insert_success";  
+            	//console.log(result);
             },
             error: function (error) {
-            	//window.location.href = "${NewURL}?type=list&maxPageItem=2&page=1&message=error_system";
-            	console.log(error);
+//            	window.location.href = "${CategoryURL}?type=list&maxPageItem=2&page=1&message=error_system";            
+            	console.log(result);
             }
         });
     }
-    function updateNew(data) {
+    function updateCategory(data) {
         $.ajax({
             url: '${APIurl}',
             type: 'PUT',

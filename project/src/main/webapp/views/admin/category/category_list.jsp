@@ -1,13 +1,8 @@
 <%@include file="/common/taglib.jsp"%>
 <c:url var="api-category-url" value="/api-admin-category" />
 <c:url var="categoryURL" value="/admin-category" />
-<c:url var="editURL" value="/admin-category">
-	<c:param name="type" value="edit" />
-	<c:param name="id" value="${item.id}" />
-</c:url>
-<c:url var="addURL" value="/admin-category">
-	<c:param name="type" value="edit" />
-</c:url>
+
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -31,7 +26,15 @@
 <body>
 	<!-- Begin Page Content -->
 	<div class="container-fluid">
-		<h2>Quản lý thể loại</h2>     
+		<h2>Quản lý thể loại</h2>
+		<c:url var="addURL" value="/admin-category">
+			<c:param name="type" value="edit"/>			
+		</c:url>
+		<a class="btn btn-sm btn-primary mr-2 float-right"
+		data-toggle="tooltip" title="Thêm"
+		href='${addURL}'>
+			<i class="fa fa-plus-circle" aria-hidden="true"></i> 
+		</a>     
 		<c:if test="${not empty messageResponse}">
 			<div class="alert alert-${alert}">
 						${messageResponse}
@@ -49,17 +52,20 @@
 			</thead>
 			<tbody>
 			<c:forEach var="item" items="${categories.listResult}">
+			<c:url var="editURL" value="/admin-category">
+				<c:param name="type" value="edit" />
+				<c:param name="id" value="${item.id}" />
+			</c:url>
 				<!--lặp list trong abstractModel -->													                                       
 				<tr>
 					<td><input class="check" type="checkbox" id="checkbox_${item.id}" value="${item.id}"></td>
 					<td>${item.name}</td>
 					<td>${item.code}</td>
-					<td> 
-						<a class="btn btn-sm btn-primary mr-2"
-						data-toggle="tooltip" title="Thêm"
-						href='${addURL}'>
-							<i class="fa fa-plus-circle" aria-hidden="true"></i> 
-						</a>
+					<td> 		
+						<c:url var="editURL" value="/admin-category">
+							<c:param name="type" value="edit"/>
+							<c:param name="id" value="${item.id}"/>
+						</c:url>				
 						<a class="btn btn-sm btn-primary mr-2"
 						data-toggle="tooltip" title="Cập nhật"
 						href='${editURL}'>
