@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 import model.CategoryModel;
 import service.ICategoryService;
 import utils.FormUtil;
+import utils.MessageUtil;
 
 /**
  * Servlet implementation class AdminCategoryController
@@ -50,10 +51,7 @@ public class AdminCategoryController extends HttpServlet {
 				}
 				view = "/views/admin/category/category_edit.jsp";
 		}
-		messageResponse = request.getParameter("message");
-		alert = request.getParameter("alert");
-		request.setAttribute("messageResponse", messageResponse);
-		request.setAttribute("alert", alert);
+		MessageUtil.showMessage(request);
 		request.setAttribute("categories", categoryModel);
 		RequestDispatcher rd = request.getRequestDispatcher(view);
 		rd.forward(request, response);

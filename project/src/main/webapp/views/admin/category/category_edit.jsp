@@ -4,65 +4,43 @@
 <c:url var ="CategoryURL" value="/admin-category"/>
 <html>
 <head>
-    <title>Chỉnh sửa bài viết</title>
+    <title>Quản lý bài viết</title>
 </head>
 <body>
-<div class="main-content">
-    <div class="main-content-inner">
-        <div class="breadcrumbs" id="breadcrumbs">
-            <script type="text/javascript">
-                try{ace.settings.check('breadcrumbs' , 'fixed')}catch(e){}
-            </script>
-            <ul class="breadcrumb">
-                <li>
-                    <i class="ace-icon fa fa-home home-icon"></i>
-                    <a href="#">Trang chủ</a>
-                </li>
-                <li class="active">Chỉnh sửa bài viết</li>
-            </ul><!-- /.breadcrumb -->
-        </div>
-        <div class="page-content">
-            <div class="row">
-                <div class="col-xs-12">
-                         <c:if test="${not empty messageResponse}">
-									<div class="alert alert-${alert}">
-  										${messageResponse}
-									</div>
-						</c:if> 
-                        <form id="formSubmit">                           
-                            <div class="form-group">
-                                <label class="col-sm-3 control-label no-padding-right">Tên thể loại</label>
-                                <div class="col-sm-9">
-                                    <input type="text" class="form-control" id="name" name="name" value="${categories.name}"/>
-                                </div>
-                            </div>
-                            <br/>
-                            <br/>
-                            <div class="form-group">
-                                <label class="col-sm-3 control-label no-padding-right">Mã thể loại</label>
-                                <div class="col-sm-9">
-                                    <input type="text" class="form-control" id="code" name="code" value="${categories.code}"/>
-                                </div>
-                            </div>
-                            <br/>
-                            <br/>                            
-                            <div class="form-group">
-                                <div class="col-sm-12">
-                                    <c:if test="${not empty categories.id}">
-                                        <input type="button" class="btn btn-white btn-warning btn-bold" value="Cập nhật thể loại" id="btnAddOrUpdate"/>
-                                    </c:if>
-                                    <c:if test="${empty categories.id}">
-                                        <input type="button" class="btn btn-white btn-warning btn-bold" value="Thêm thể loại" id="btnAddOrUpdate"/>
-                                    </c:if>
-                                </div>
-                            </div>
-                            <input type="hidden" value="${categories.id}" id="id" name="id"/>
-                        </form>
+    <div class="container">
+        <h2></h2>
+        <c:if test="${not empty messageResponse}">
+                    <div class="alert alert-${alert}">
+                        ${messageResponse}
+                    </div>
+        </c:if> 
+        <form id="formSubmit">
+            <div class="form-group">
+                <label class="col-sm-3 control-label no-padding-right">Tên thể loại</label>
+                <div class="col-sm-9">
+                    <input type="text" class="form-control" id="name" name="name" value="${categories.name}"/>
                 </div>
             </div>
-        </div>
-    </div>
-</div>
+            <div class="form-group">
+                <label class="col-sm-3 control-label no-padding-right">Mã thể loại</label>
+                <div class="col-sm-9">
+                    <input type="text" class="form-control" id="code" name="code" value="${categories.code}"/>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-12">
+                    <c:if test="${not empty categories.id}">
+                        <input type="button" class="btn btn-white btn-warning btn-bold" value="Cập nhật thể loại" id="btnAddOrUpdate"/>
+                    </c:if>
+                    <c:if test="${empty categories.id}">
+                        <input type="button" class="btn btn-white btn-warning btn-bold" value="Thêm thể loại" id="btnAddOrUpdate"/>
+                    </c:if>
+                </div>
+            </div>
+          <input type="hidden" value="${categories.id}" id="id" name="id"/>          
+        </form>
+      </div>
+                                                                    
 <script>
 	/* var editor = '';
 	$(document).ready(function(){
@@ -92,7 +70,7 @@
             data: JSON.stringify(data),
             dataType: 'json',
             success: function (result) {
-            	window.location.href = "${CategoryURL}?type=list&message=Add_Success&alert=success";
+            	window.location.href = "${CategoryURL}?type=list&message=update_success";
             	
             },
             error: function (error) {

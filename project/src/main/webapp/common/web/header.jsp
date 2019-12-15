@@ -16,7 +16,19 @@
 						    <span class="text">youremail@email.com</span>
 					    </div>
 					    <div class="col-md-5 pr-4 d-flex topper align-items-center text-lg-right">
-						    <span class="text icon-user"><a href="#" class="text"> SIGN UP</a></span>
+					    <c:if test="${not empty USERMODEL }">
+					    	<span class="text icon-user">
+						    	<a href="<c:url value=""/>" class="text mr-4">Welcom, ${USERMODEL.fullname}</a>
+						    </span> 	
+						    <span>					    
+						    <a href="<c:url value="/thoat?action=logout"/>" class="text">Thoát</a>
+						    </span>
+					    </c:if>
+					    <c:if test="${empty USERMODEL }">
+						    <span class="text icon-user">
+						    	<a href="<c:url value="/dang-nhap?action=login"/>" class="text"> SIGN UP</a>
+						    </span>
+						</c:if>
 					    </div>
 				    </div>
 			    </div>

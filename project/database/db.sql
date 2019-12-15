@@ -13,7 +13,7 @@ create table user(
 	id bigint not null primary key auto_increment,
     username varchar(150) not null,
     password varchar(150) not null,
-    fullname varchar(255) null,
+    fullname varchar(255) not null,
     phone varchar(255) not null,
     email varchar(255) null,
     status int not null,

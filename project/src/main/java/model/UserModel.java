@@ -1,5 +1,6 @@
 package model;
 
+
 public class UserModel extends AbstractModel<UserModel> {
 	private String username;
 	private String password;
@@ -8,6 +9,7 @@ public class UserModel extends AbstractModel<UserModel> {
 	private String email;
 	private Integer status;
 	private Long roleid;
+	private RoleModel role = new RoleModel();
 	public String getUsername() {
 		return username;
 	}
@@ -49,6 +51,12 @@ public class UserModel extends AbstractModel<UserModel> {
 	}
 	public void setRoleid(Long roleid) {
 		this.roleid = roleid;
+	}
+	public RoleModel getRole() {
+		return role;
+	}
+	public void setRole(RoleModel role) {
+		this.role = role;
 	}
 	
 }

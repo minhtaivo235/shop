@@ -3,62 +3,61 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title><dec:title default="Trang chủ" /></title>
-	<link rel="stylesheet" href="<c:url value='/template/admin/assets/css/bootstrap.min.css' />" />
-    <link rel="stylesheet" href="<c:url value='/template/admin/font-awesome/4.5.0/css/font-awesome.min.css' />" />
-    <link rel="stylesheet" href="<c:url value='/template/admin/assets/css/ace.min.css' />" class="ace-main-stylesheet" id="main-ace-style" />
-    
-    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css">
-    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-    
-    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-    <script src="<c:url value='/template/admin/assets/js/ace-extra.min.js' />"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script type='text/javascript' src='<c:url value="/template/admin/js/jquery-2.2.3.min.js" />'></script>
-    <script src="<c:url value='/template/admin/assets/js/jquery.2.1.1.min.js' />"></script>
-    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-    <script src="<c:url value='/template/paging/jquery.twbsPagination.js' />"></script>
-   
+
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <title>SB Admin 2 - Dashboard</title>
+
+  <!-- Custom fonts for this template-->
+  <link href="<c:url value='/template/admin/vendor/fontawesome-free/css/all.min.css'/>" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+
+  <!-- Custom styles for this template-->
+  <link href="<c:url value='/template/admin/css/sb-admin-2.min.css'/>" rel="stylesheet">
+
 </head>
-<body class="no-skin">
-	<!-- header -->
-    <%@ include file="/common/admin/header.jsp" %>
-    <!-- header -->
-	
-	<div class="main-container" id="main-container">
-		<script type="text/javascript">
-				try{ace.settings.check('main-container' , 'fixed')}catch(e){}
-		</script>
-		<!-- header -->
+<body id="page-top">
+	<div id="wrapper">
+		<!-- menu -->
     	<%@ include file="/common/admin/menu.jsp" %>
-    	<!-- header -->
+    	<!-- menu -->
+    	
+    	<!-- Content Wrapper -->
+    	<div id="content-wrapper" class="d-flex flex-column">
+
+			<!-- Main Content -->
+			<div id="content">
+    	
+				<!-- header -->
+			    <%@ include file="/common/admin/header.jsp" %>
+			    <!-- header -->
+			
 		
-		<dec:body/>
-		
+			<div>
+	    	<dec:body/>
+	    	</div>
+	    	</div>
+			
 		<!-- footer -->
     	<%@ include file="/common/admin/footer.jsp" %>
     	<!-- footer -->
+    	</div>
+  	</div>
     	
-    	<a href="#" id="btn-scroll-up" class="btn-scroll-up btn btn-sm btn-inverse display">
-				<i class="ace-icon fa fa-angle-double-up icon-only bigger-110"></i>
-		</a>
-	</div>
+    	
 	
-	
-	<script src="<c:url value='/template/admin/assets/js/bootstrap.min.js' />"></script>
-	<script src="<c:url value='/template/admin/assets/js/jquery-ui.custom.min.js' />"></script>
-	<script src="<c:url value='/template/admin/assets/js/jquery.ui.touch-punch.min.js' />"></script>
-	<script src="<c:url value='/template/admin/assets/js/jquery.easypiechart.min.js' />"></script>
-	<script src="<c:url value='/template/admin/assets/js/jquery.sparkline.min.js' />"></script>
-	<script src="<c:url value='/template/admin/assets/js/jquery.flot.min.js' />"></script>
-	<script src="<c:url value='/template/admin/assets/js/jquery.flot.pie.min.js' />"></script>
-	<script src="<c:url value='/template/admin/assets/js/jquery.flot.resize.min.js' />"></script>
-	<script src="<c:url value='/template/admin/assets/js/ace-elements.min.js' />"></script>
-	<script src="<c:url value='/template/admin/assets/js/ace.min.js' />"></script>
-	<script src="<c:url value='/template/admin/assets/js/bootstrap.min.js'/>"></script>
-	
-	<!-- page specific plugin scripts -->
-	<script src="<c:url value='/template/admin/assets/js/jquery-ui.min.js'/>"></script>
+	<script src="<c:url value='/template/admin/vendor/jquery/jquery.min.js'/>"></script>
+  <script src="<c:url value='/template/admin/vendor/bootstrap/js/bootstrap.bundle.min.js'/>"></script>
+
+  <!-- Core plugin JavaScript-->
+  <script src="<c:url value='/template/admin/vendor/jquery-easing/jquery.easing.min.js'/>"></script>
+
+  <!-- Custom scripts for all pages-->
+  <script src="<c:url value='/template/admin/js/sb-admin-2.min.js'/>"></script>
 	
 	
 </body>

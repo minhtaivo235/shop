@@ -34,5 +34,13 @@ public class CategoryDAO  extends AbstractDAO<CategoryModel> implements ICategor
 				categoryModel.getCode()) ;
 	}
 
+	public void update(CategoryModel categoryModel) {
+		StringBuilder sql = new StringBuilder("UPDATE category SET name = ?, code = ?,");
+		sql.append(" createddate = ?, createdby = ?, modifieddate = ?, modifiedby = ? WHERE id = ?");
+		update(sql.toString(), categoryModel.getName(), categoryModel.getCode(), categoryModel.getCreatedDate(),
+				categoryModel.getCreatedBy(), categoryModel.getModifiedDate(), categoryModel.getModifiedBy(), categoryModel.getId());
+		
+	}
+
 
 }

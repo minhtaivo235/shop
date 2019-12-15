@@ -16,31 +16,27 @@ import mapper.RowMapper;
 
 public class AbstractDAO<T> implements GenericDAO<T> {
 	
-	ResourceBundle resourcebundle = ResourceBundle.getBundle("db");
-
+ResourceBundle resourceBundle = ResourceBundle.getBundle("db");
+	
 	public Connection getConnection() {
 		try {
-			/*			Class.forName("com.mysql.jdbc.Driver");
-			String url = "jdbc:mysql://localhost:3306/new_servlet";
-			String user = "root";
-			String password = "123456";*/			
-			Class.forName(resourcebundle.getString("driverName"));
-			String url = resourcebundle.getString("url");
-			String user = resourcebundle.getString("user");
-			String password = resourcebundle.getString("password");
+			Class.forName(resourceBundle.getString("driverName"));
+			String url = resourceBundle.getString("url");
+			String user = resourceBundle.getString("user");
+			String password = resourceBundle.getString("password");
 			return DriverManager.getConnection(url, user, password);
-		} catch (ClassNotFoundException e) {
-			e.getMessage();
+		}catch (ClassNotFoundException  e) {
+			System.out.println(e.getMessage());
 			return null;
-		} catch (SQLException e) {
-			e.getMessage();
+		} catch ( SQLException e) {
+			System.out.println(e.getMessage());
 			return null;
 		}
-
+		
 	}
 
 	public <T> List<T> query(String sql, RowMapper<T> rowMapper, Object... parameters) {
-		List<T> results = new ArrayList();
+		List<T> results = new ArrayList<T>();
 		Connection connection = null;
 		PreparedStatement statement = null;
 		ResultSet resultSet = null;
@@ -54,6 +50,7 @@ public class AbstractDAO<T> implements GenericDAO<T> {
 			}
 			return results;
 		} catch (SQLException e) {
+			System.out.println(e.getMessage());
 			return null;
 		} finally {
 			try {
@@ -66,9 +63,29 @@ public class AbstractDAO<T> implements GenericDAO<T> {
 				if (resultSet != null) {
 					resultSet.close();
 				}
-			} catch (SQLException e2) {
+			} catch (SQLException e) {
 				return null;
 			}
+		}
+	}
+
+	private void setParameter(PreparedStatement statement, Object... parameters) {
+		try {
+			for (int i = 0; i < parameters.length; i++) {
+				Object parameter = parameters[i];
+				int index = i + 1;
+				if (parameter instanceof Long) {
+					statement.setLong(index, (Long) parameter);
+				} else if (parameter instanceof String) {
+					statement.setString(index, (String) parameter);
+				} else if (parameter instanceof Integer) {
+					statement.setInt(index, (Integer) parameter);
+				} else if (parameter instanceof Timestamp) {
+					statement.setTimestamp(index, (Timestamp) parameter);
+				}
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
 		}
 	}
 
@@ -90,7 +107,6 @@ public class AbstractDAO<T> implements GenericDAO<T> {
 					e1.printStackTrace();
 				}
 			}
-
 		} finally {
 			try {
 				if (connection != null) {
@@ -103,15 +119,14 @@ public class AbstractDAO<T> implements GenericDAO<T> {
 				e2.printStackTrace();
 			}
 		}
-		
 	}
 
 	public Long insert(String sql, Object... parameters) {
-		ResultSet resultSet = null;
-		Long id = null;
 		Connection connection = null;
 		PreparedStatement statement = null;
+		ResultSet resultSet = null;
 		try {
+			Long id = null;
 			connection = getConnection();
 			connection.setAutoCommit(false);
 			statement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
@@ -131,7 +146,6 @@ public class AbstractDAO<T> implements GenericDAO<T> {
 					e1.printStackTrace();
 				}
 			}
-			return null;
 		} finally {
 			try {
 				if (connection != null) {
@@ -144,12 +158,13 @@ public class AbstractDAO<T> implements GenericDAO<T> {
 					resultSet.close();
 				}
 			} catch (SQLException e2) {
-				return null;
+				e2.printStackTrace();
 			}
-		}		
+		}
+		return null;
 	}
 
-	public int count(String sql, Object... parameters) { // select count(*) from news
+	public int count(String sql, Object... parameters) {
 		Connection connection = null;
 		PreparedStatement statement = null;
 		ResultSet resultSet = null;
@@ -160,7 +175,7 @@ public class AbstractDAO<T> implements GenericDAO<T> {
 			setParameter(statement, parameters);
 			resultSet = statement.executeQuery();
 			while (resultSet.next()) {
-				count = resultSet.getInt(1); // lấy giá trị cột đầu tiên -- count(*)
+				count = resultSet.getInt(1);
 			}
 			return count;
 		} catch (SQLException e) {
@@ -176,31 +191,10 @@ public class AbstractDAO<T> implements GenericDAO<T> {
 				if (resultSet != null) {
 					resultSet.close();
 				}
-			} catch (SQLException e2) {
+			} catch (SQLException e) {
 				return 0;
 			}
 		}
-	}
-	
-	private void setParameter(PreparedStatement statement, Object... parameters) {
-		try {
-			for (int i = 0; i < parameters.length; i++) {
-				Object parameter = parameters[i];
-				int index = i + 1;
-				if (parameter instanceof Long) {
-					statement.setLong(index, (Long) parameter);
-				} else if (parameter instanceof String) {
-					statement.setString(index, (String) parameter);
-				} else if (parameter instanceof Integer) {
-					statement.setInt(index, (Integer) parameter);
-				} else if (parameter instanceof Timestamp) {
-					statement.setTimestamp(index,(Timestamp) parameter);
-				} 
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-
 	}
 
 }
