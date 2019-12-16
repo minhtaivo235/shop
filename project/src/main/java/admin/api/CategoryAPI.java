@@ -46,6 +46,8 @@ public class CategoryAPI extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 		response.setContentType("application/json");
 		CategoryModel categoryModel = HttpUtil.of(request.getReader()).toModel(CategoryModel.class);
+		UserModel userModel = (UserModel) SessionUtil.getInstance().getValue(request, "USERMODEL");
+		categoryModel.setCreatedBy(userModel.getUsername());
 		//categoryModel.setCreatedBy(((UserModel)SessionUtil.getInstance().getValue(request, "USERMODEL")).getUsername());
 		categoryModel = categoryService.save(categoryModel);
 		mapper.writeValue(response.getOutputStream(), categoryModel);

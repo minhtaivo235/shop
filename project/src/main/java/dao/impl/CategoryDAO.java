@@ -28,10 +28,11 @@ public class CategoryDAO  extends AbstractDAO<CategoryModel> implements ICategor
 	}
 
 	public Long save(CategoryModel categoryModel) {
-		StringBuilder sql = new StringBuilder("INSERT INTO category (name, code)");
-		sql.append(" VALUES(?, ?)");
-		return insert(sql.toString(), categoryModel.getName(),
-				categoryModel.getCode()) ;
+		StringBuilder sql = new StringBuilder("INSERT INTO category (name, code,");
+		sql.append(" createddate, createdby)");
+		sql.append(" VALUES(?, ?, ?, ?)");
+		return insert(sql.toString(), categoryModel.getName(), categoryModel.getCode(), categoryModel.getCreatedDate()
+				, categoryModel.getCreatedBy()) ;
 	}
 
 	public void update(CategoryModel categoryModel) {
