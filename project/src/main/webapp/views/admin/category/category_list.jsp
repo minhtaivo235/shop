@@ -26,28 +26,38 @@
 <body>
 	<!-- Begin Page Content -->
 	<div class="container-fluid">
+	<div class="clearfix">
 		<h2>Quản lý thể loại</h2>
-		<c:url var="addURL" value="/admin-category">
-			<c:param name="type" value="edit"/>			
-		</c:url>
-		<a class="btn btn-sm btn-primary mr-2 float-right"
-		data-toggle="tooltip" title="Thêm"
-		href='${addURL}'>
-			<i class="fa fa-plus-circle" aria-hidden="true"></i> 
-		</a>     
+		<div class="float-right">
+			<a class="btn btn-success"
+			data-toggle="tooltip" title="Thêm"
+			href='${addURL}'>
+				<i class="fa fa-plus-circle" aria-hidden="true"></i> 
+			</a>     
+		</div>
+	</div>
 		<c:if test="${not empty messageResponse}">
-			<div class="alert alert-${alert}">
+			<div class="alert alert-${alert} alert-dismissible">
+			<button type="button" class="close" data-dismiss="alert">×</button>
 						${messageResponse}
 			</div>
 		</c:if>
+		<c:url var="addURL" value="/admin-category">
+			<c:param name="type" value="edit"/>			
+		</c:url>
+		
+		
 		<form action="<c:url value='admin-category'/>" id="formSubmit" method="get">     
 		<table class="table table-borderless w-100">
 			<thead>
 			<tr class="table-secondary">
 				<th></th>
-				<th>Tên thể loại</th>
-				<th>Mã thể loại</th>
-				<th>Hành động</th>
+				<th><a href="#">Tên thể loại</a></th>
+				<th><a href="#">Mã thể loại</a></th>
+				<th style="text-align: center">
+					<a href="#">Hành động</a>
+					
+				</th>
 			</tr>
 			</thead>
 			<tbody>
@@ -61,7 +71,7 @@
 					<td><input class="check" type="checkbox" id="checkbox_${item.id}" value="${item.id}"></td>
 					<td>${item.name}</td>
 					<td>${item.code}</td>
-					<td> 		
+					<td style="text-align:center"> 		
 						<c:url var="editURL" value="/admin-category">
 							<c:param name="type" value="edit"/>
 							<c:param name="id" value="${item.id}"/>
@@ -71,9 +81,9 @@
 						href='${editURL}'>
 							<i class="fas fa-pen-square"></i>
 						</a>
-						<a class="btn btn-sm btn-primary mr-2"
+						<a class="btn btn-sm btn-danger mr-2"
 						data-toggle="tooltip" title="Xóa"
-						href="#" id="btnDelete">
+						id="btnDelete">
 							<i class="fas fa-trash"></i> 
 						</a>
 					</td>

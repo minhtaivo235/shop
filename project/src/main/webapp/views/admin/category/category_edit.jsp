@@ -29,12 +29,13 @@
             </div>
             <div class="form-group">
                 <div class="col-sm-12">
-                    <c:if test="${not empty categories.id}">
-                        <input type="button" class="btn btn-white btn-warning btn-bold" value="Cập nhật thể loại" id=btnAddOrUpdate/>
-                    </c:if>
-                    <c:if test="${empty categories.id}">
-                        <input type="button" class="btn btn-white btn-warning btn-bold" value="Thêm thể loại" id="btnAddOrUpdate"/>
-                    </c:if>
+                    
+                       
+                    
+                    
+                        <input type="button" class="btn btn-white btn-warning btn-bold" value="" id="btnAddOrUpdate"/>
+                    
+                    
                 </div>
             </div>
           <input type="hidden" value="${categories.id}" id="id" name="id"/>          
@@ -46,22 +47,16 @@
 	$(document).ready(function(){
 		editor = CKEDITOR.replace( 'content');
 	}); */
-	
-    $('#btnAddOrUpdate').click(function (e) {
-        e.preventDefault();
-        var data = {};
-        var formData = $('#formSubmit').serializeArray();
-        $.each(formData, function (i, v) {
-            data[""+v.name+""] = v.value;
-        });
-        //data["content"] = editor.getData();
-        var id = $('#id').val();
-        if (id == "") {
-        	addCategory(data);
-        } else {
-            updateCategory(data);
-        }
+
+
+	$(document).ready(function() {
+     if (${categories.id} == "") {
+        $('#btnAddOrUpdate').val("Cập nhật");
+     }else{
+         $('#btnAddOrUpdate').val("Thêm");
+     }
     });
+   
     function addCategory(data) {
         $.ajax({
             url: '${APIurl}',
@@ -87,8 +82,7 @@
             data: JSON.stringify(data),
             dataType: 'json',
             success: function (result) {
-            	//window.location.href = "${NewURL}?type=edit&id="+result.id+"&message=update_success";
-            	console.log(result);
+            	window.location.href = "${CategoryURL}?type=list&id=&message=update_success";
             },
             error: function (error) {
             	//window.location.href = "${NewURL}?type=list&maxPageItem=2&page=1&message=error_system";
@@ -96,6 +90,22 @@
             }
         });
     }
+    
+    $('#btnAddOrUpdate').click(function (e) {
+        e.preventDefault();
+        var data = {};
+        var formData = $('#formSubmit').serializeArray();
+        $.each(formData, function (i, v) {
+            data[""+v.name+""] = v.value;
+        });
+        //data["content"] = editor.getData();
+        var id = $('#id').val();
+        if (id == "") {
+        	addCategory(data);
+        } else {
+            updateCategory(data);
+        }
+    });
 </script>
 </body>
 </html>

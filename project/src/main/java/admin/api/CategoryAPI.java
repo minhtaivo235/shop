@@ -52,17 +52,19 @@ public class CategoryAPI extends HttpServlet {
 		categoryModel = categoryService.save(categoryModel);
 		mapper.writeValue(response.getOutputStream(), categoryModel);
 	}
-	@Override
+	
 	protected void doPut(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		ObjectMapper mapper = new ObjectMapper();
 		request.setCharacterEncoding("UTF-8");
 		response.setContentType("application/json");
 		CategoryModel updateCategory =  HttpUtil.of(request.getReader()).toModel(CategoryModel.class);
-		updateCategory.setModifiedBy(((UserModel) SessionUtil.getInstance().getValue(request, "USERMODEL")).getUsername());
+		UserModel userModel = (UserModel) SessionUtil.getInstance().getValue(request, "USERMODEL");
+		updateCategory.setCreatedBy(userModel.getUsername());
+//		updateCategory.setModifiedBy(((UserModel) SessionUtil.getInstance().getValue(request, "USERMODEL")).getUsername());
 		updateCategory = categoryService.update(updateCategory);
 		mapper.writeValue(response.getOutputStream(), updateCategory);
 	}
-	@Override
+	
 	protected void doDelete(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		super.doDelete(req, resp);
