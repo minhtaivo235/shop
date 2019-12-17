@@ -11,4 +11,5 @@ public interface ICategoryService {
 	CategoryModel save(CategoryModel categoryModel);
 	CategoryModel findOne(Long id);
 	CategoryModel update(CategoryModel categoryModel);
+	void delete(long[] id);
 }

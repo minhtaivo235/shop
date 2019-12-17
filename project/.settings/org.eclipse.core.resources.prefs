@@ -1,4 +1,5 @@
 eclipse.preferences.version=1
+encoding//src/main/java/admin/api/CategoryAPI.java=UTF-8
 encoding//src/main/java/controller/admin/AdminHomeController.java=UTF-8
 encoding//src/main/java/controller/web/HomeController.java=UTF-8
 encoding//src/main/java/dao/impl/AbstractDAO.java=UTF-8

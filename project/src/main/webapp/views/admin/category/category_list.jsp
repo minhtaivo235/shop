@@ -1,6 +1,6 @@
 <%@include file="/common/taglib.jsp"%>
-<c:url var="api-category-url" value="/api-admin-category" />
-<c:url var="categoryURL" value="/admin-category" />
+<c:url var="APIurl" value="/api-admin-category"/>
+<c:url var ="CategoryURL" value="/admin-category"/>
 
 
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -29,11 +29,20 @@
 	<div class="clearfix">
 		<h2>Quản lý thể loại</h2>
 		<div class="float-right">
+			<c:url var="addURL" value="/admin-category">
+				<c:param name="type" value="edit"/>			
+			</c:url>
 			<a class="btn btn-success"
 			data-toggle="tooltip" title="Thêm"
 			href='${addURL}'>
 				<i class="fa fa-plus-circle" aria-hidden="true"></i> 
-			</a>     
+			</a>   
+			<button id="btnDelete" type="button"
+					class="btn btn-danger ml-2" data-toggle="tooltip" title='Xóa'>
+							<span>
+								<i class="fas fa-trash"></i>
+							</span>
+			</button>  
 		</div>
 	</div>
 		<c:if test="${not empty messageResponse}">
@@ -42,9 +51,7 @@
 						${messageResponse}
 			</div>
 		</c:if>
-		<c:url var="addURL" value="/admin-category">
-			<c:param name="type" value="edit"/>			
-		</c:url>
+		
 		
 		
 		<form action="<c:url value='admin-category'/>" id="formSubmit" method="get">     
@@ -61,14 +68,10 @@
 			</tr>
 			</thead>
 			<tbody>
-			<c:forEach var="item" items="${categories.listResult}">
-			<c:url var="editURL" value="/admin-category">
-				<c:param name="type" value="edit" />
-				<c:param name="id" value="${item.id}" />
-			</c:url>
+			<c:forEach var="item" items="${categories.listResult}">			
 				<!--lặp list trong abstractModel -->													                                       
-				<tr>
-					<td><input class="check" type="checkbox" id="checkbox_${item.id}" value="${item.id}"></td>
+				<tr>			
+					<td><input type="checkbox" id="checkbox_${item.id}" value="${item.id}"></td>		
 					<td>${item.name}</td>
 					<td>${item.code}</td>
 					<td style="text-align:center"> 		
@@ -80,12 +83,8 @@
 						data-toggle="tooltip" title="Cập nhật"
 						href='${editURL}'>
 							<i class="fas fa-pen-square"></i>
-						</a>
-						<a class="btn btn-sm btn-danger mr-2"
-						data-toggle="tooltip" title="Xóa"
-						id="btnDelete">
-							<i class="fas fa-trash"></i> 
-						</a>
+						</a>						
+																	
 					</td>
 				</tr>
 			</c:forEach>
@@ -96,30 +95,35 @@
 	
 	<script>
 
-
+	
 	$("#btnDelete").click(function() {
 		var data = {};
 		var ids = $('tbody input[type=checkbox]:checked').map(function () {
             return $(this).val();
         }).get();
 		data['ids'] = ids;
-		deleteNew(data);
+		deleteCategory(data);
 	});
 	
-	function deleteNew(data) {
+	function deleteCategory(data) {
         $.ajax({
             url: '${APIurl}',
             type: 'DELETE',
             contentType: 'application/json',
             data: JSON.stringify(data),
             success: function (result) {
-                window.location.href = "${NewURL}?type=list&message=delete_success";
+                window.location.href = "${CategoryURL}?type=list&message=delete_success";
+                console.log(result);
             },
             error: function (error) {
-            	window.location.href = "${NewURL}?type=list&message=error_system";
+            	window.location.href = "${CategoryURL}?type=list&message=error_system";
             }
         });
     }
+	
+	
+	
+	
 	</script>
 </body>
 

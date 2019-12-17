@@ -33,8 +33,16 @@ public class CategoryService implements ICategoryService {
 	public CategoryModel update(CategoryModel categoryModel) {
 		CategoryModel oldCate = categoryDao.findOne(categoryModel.getId());
 		categoryModel.setCreatedDate(oldCate.getCreatedDate());
+		categoryModel.setCreatedBy(oldCate.getCreatedBy());
 		categoryModel.setModifiedDate(new Timestamp(System.currentTimeMillis()));
 		categoryDao.update(categoryModel);
 		return categoryDao.findOne(categoryModel.getId());
+	}
+
+	public void delete(long[] ids) {
+		for (long id: ids) {
+			categoryDao.delete(id);
+		}
+		
 	}
 }

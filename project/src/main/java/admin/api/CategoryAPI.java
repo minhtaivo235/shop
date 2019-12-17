@@ -59,15 +59,19 @@ public class CategoryAPI extends HttpServlet {
 		response.setContentType("application/json");
 		CategoryModel updateCategory =  HttpUtil.of(request.getReader()).toModel(CategoryModel.class);
 		UserModel userModel = (UserModel) SessionUtil.getInstance().getValue(request, "USERMODEL");
-		updateCategory.setCreatedBy(userModel.getUsername());
+		updateCategory.setModifiedBy(userModel.getUsername());
 //		updateCategory.setModifiedBy(((UserModel) SessionUtil.getInstance().getValue(request, "USERMODEL")).getUsername());
 		updateCategory = categoryService.update(updateCategory);
 		mapper.writeValue(response.getOutputStream(), updateCategory);
 	}
 	
 	protected void doDelete(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		super.doDelete(req, resp);
+		ObjectMapper mapper = new ObjectMapper();
+		req.setCharacterEncoding("UTF-8"); // client chuyển lên sever k bị lỗi font
+		resp.setContentType("application/json"); // sever định nghĩa kiểu dữ liệu trả về json
+		CategoryModel categoryModel = HttpUtil.of(req.getReader()).toModel(CategoryModel.class);
+		categoryService.delete(categoryModel.getIds());
+		mapper.writeValue(resp.getOutputStream(), "{}");
 	}
 
 }

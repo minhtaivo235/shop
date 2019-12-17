@@ -10,7 +10,7 @@ public class AbstractModel<T> {
 	private Timestamp modifiedDate;
 	private String createdBy;
 	private String modifiedBy;
-//	private long[] ids;
+	private long[] ids;
 	private List<T> listResult = new ArrayList<T>();
 	// totalPage = totalItem / maxPageItem
 /*	private Integer page; // trang đang đứng
@@ -67,6 +67,14 @@ public class AbstractModel<T> {
 	public void setType(String type) {
 		this.type = type;
 	}
+	public long[] getIds() {
+		return ids;
+	}
+	public void setIds(long[] ids) {
+		this.ids = ids;
+	}
+
+	
 	
 	
 	

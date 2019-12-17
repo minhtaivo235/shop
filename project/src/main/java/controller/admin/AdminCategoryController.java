@@ -47,6 +47,9 @@ public class AdminCategoryController extends HttpServlet {
 				if (categoryModel.getId() != null) {
 					categoryModel = categoryService.findOne(categoryModel.getId());
 				}
+				else {
+					
+				}
 				view = "/views/admin/category/category_edit.jsp";
 		}
 		MessageUtil.showMessage(request);

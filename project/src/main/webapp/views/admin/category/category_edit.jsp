@@ -33,7 +33,7 @@
                        
                     
                     
-                        <input type="button" class="btn btn-white btn-warning btn-bold" value="" id="btnAddOrUpdate"/>
+                        <input type="button" class="btn btn-white btn-warning btn-bold" id="btnAddOrUpdate"/>
                     
                     
                 </div>
@@ -50,12 +50,13 @@
 
 
 	$(document).ready(function() {
-     if (${categories.id} == "") {
-        $('#btnAddOrUpdate').val("Cập nhật");
-     }else{
+		var id = $('#id').val();
+     if (id == "") {
          $('#btnAddOrUpdate').val("Thêm");
+     }else{
+        $('#btnAddOrUpdate').val("Cập nhật");
      }
-    });
+    })
    
     function addCategory(data) {
         $.ajax({
@@ -69,8 +70,8 @@
             	//console.log(result);
             },
             error: function (error) {
-//            	window.location.href = "${CategoryURL}?type=list&maxPageItem=2&page=1&message=error_system";            
-            	console.log(result);
+            	window.location.href = "${CategoryURL}?type=list&message=error_system";            
+            	//console.log(result);
             }
         });
     }
@@ -82,11 +83,12 @@
             data: JSON.stringify(data),
             dataType: 'json',
             success: function (result) {
-            	window.location.href = "${CategoryURL}?type=list&id=&message=update_success";
+            	window.location.href = "${CategoryURL}?type=list&message=update_success";
+            	//console.log(result);
             },
             error: function (error) {
-            	//window.location.href = "${NewURL}?type=list&maxPageItem=2&page=1&message=error_system";
-            	console.log(error);
+            	window.location.href = "${NewURL}?type=list&maxPageItem=2&page=1&message=error_system";
+            	//console.log(error);
             }
         });
     }

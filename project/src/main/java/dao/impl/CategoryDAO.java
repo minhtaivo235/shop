@@ -44,4 +44,11 @@ public class CategoryDAO  extends AbstractDAO<CategoryModel> implements ICategor
 	}
 
 
+	public void delete(long id) {
+		String sql = "delete from category where id = ?";
+		update(sql, id);
+		
+	}
+
+
 }
