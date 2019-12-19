@@ -1,7 +1,5 @@
 package model;
 
-import java.sql.Timestamp;
-
 public class CategoryModel extends AbstractModel<CategoryModel> {
 	private String name;
 	private String code;
@@ -18,6 +16,7 @@ public class CategoryModel extends AbstractModel<CategoryModel> {
 	public void setCode(String code) {
 		this.code = code;
 	}
+	
 
 
 }

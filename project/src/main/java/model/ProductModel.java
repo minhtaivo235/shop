@@ -1,7 +1,5 @@
 package model;
 
-import java.sql.Timestamp;
-
 public class ProductModel extends AbstractModel<ProductModel> {
 	private String name;
 	private Integer origin_price;

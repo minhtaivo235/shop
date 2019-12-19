@@ -1,48 +1,51 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java"%>
 <%@include file="/common/taglib.jsp"%>
-<c:url var="APIurl" value="/api-admin-category"/>
-<c:url var ="CategoryURL" value="/admin-category"/>
+<c:url var="APIurl" value="/api-admin-category" />
+<c:url var="CategoryURL" value="/admin-category" />
 <html>
 <head>
-    <title>Quản lý bài viết</title>
+<title>Quản lý bài viết</title>
 </head>
 <body>
-    <div class="container">
-        <h2></h2>
-        <c:if test="${not empty messageResponse}">
-                    <div class="alert alert-${alert}">
-                        ${messageResponse}
-                    </div>
-        </c:if> 
-        <form id="formSubmit">
-            <div class="form-group">
-                <label class="col-sm-3 control-label no-padding-right">Tên thể loại</label>
-                <div class="col-sm-9">
-                    <input type="text" class="form-control" id="name" name="name" value="${categories.name}"/>
-                </div>
-            </div>
-            <div class="form-group">
-                <label class="col-sm-3 control-label no-padding-right">Mã thể loại</label>
-                <div class="col-sm-9">
-                    <input type="text" class="form-control" id="code" name="code" value="${categories.code}"/>
-                </div>
-            </div>
-            <div class="form-group">
-                <div class="col-sm-12">
-                    
-                       
-                    
-                    
-                        <input type="button" class="btn btn-white btn-warning btn-bold" id="btnAddOrUpdate"/>
-                    
-                    
-                </div>
-            </div>
-          <input type="hidden" value="${categories.id}" id="id" name="id"/>          
-        </form>
-      </div>
-                                                                    
-<script>
+	<div class="container">
+		<h2></h2>
+		<c:if test="${not empty messageResponse}">
+			<div class="alert alert-${alert}">${messageResponse}</div>
+		</c:if>
+		<form id="formSubmit">
+			<div class="form-group">
+				<label class="col-sm-3 control-label no-padding-right">Tên
+					thể loại</label>
+				<div class="col-sm-9">
+					<input type="text" class="form-control" id="name" name="name"
+						value="${categories.name}" />
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="col-sm-3 control-label no-padding-right">Mã
+					thể loại</label>
+				<div class="col-sm-9">
+					<input type="text" class="form-control" id="code" name="code"
+						value="${categories.code}" />
+				</div>
+			</div>
+			<div class="form-group">
+				<div class="col-sm-12">
+
+
+
+
+					<input type="button" class="btn btn-white btn-warning btn-bold"
+						id="btnAddOrUpdate" />
+
+
+				</div>
+			</div>
+			<input type="hidden" value="${categories.id}" id="id" name="id" />
+		</form>
+	</div>
+
+	<script>
 	/* var editor = '';
 	$(document).ready(function(){
 		editor = CKEDITOR.replace( 'content');
@@ -66,11 +69,11 @@
             data: JSON.stringify(data),
             dataType: 'json',
             success: function (result) {
-            	window.location.href = "${CategoryURL}?type=list&message=insert_success";  
+            	window.location.href = "${CategoryURL}?type=list&maxPageItem=2&page=1&sortName=id&sortBy=desc&message=insert_success";  
             	//console.log(result);
             },
             error: function (error) {
-            	window.location.href = "${CategoryURL}?type=list&message=error_system";            
+            	window.location.href = "${CategoryURL}?type=list&maxPageItem=2&page=1&message=error_system";            
             	//console.log(result);
             }
         });

@@ -8,15 +8,16 @@ import javax.inject.Inject;
 
 import dao.ICategoryDAO;
 import model.CategoryModel;
+import paging.IPageble;
 import service.ICategoryService;
 
 public class CategoryService implements ICategoryService {
 	@Inject
 	private ICategoryDAO categoryDao;
 
-	public List<CategoryModel> findAll() {
+	public List<CategoryModel> findAll(IPageble pageable) {
 		
-		return categoryDao.findAll();
+		return categoryDao.findAll(pageable);
 	}
 
 	public CategoryModel save(CategoryModel categoryModel) {
@@ -44,5 +45,11 @@ public class CategoryService implements ICategoryService {
 			categoryDao.delete(id);
 		}
 		
+	}
+
+	@Override
+	public int getTotalItem() {
+		// TODO Auto-generated method stub
+		return categoryDao.getTotalItem();
 	}
 }

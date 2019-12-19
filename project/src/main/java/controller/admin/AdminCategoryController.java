@@ -12,7 +12,10 @@ import javax.servlet.http.HttpServletResponse;
 
 
 import model.CategoryModel;
+import paging.IPageble;
+import paging.PageRequest;
 import service.ICategoryService;
+import sort.Sorter;
 import utils.FormUtil;
 import utils.MessageUtil;
 
@@ -40,7 +43,10 @@ public class AdminCategoryController extends HttpServlet {
 		CategoryModel categoryModel = FormUtil.toModel(CategoryModel.class, request);
 		String view = "";
 		if (categoryModel.getType().equals("list")) {
-			categoryModel.setListResult(categoryService.findAll());
+			IPageble pageable = new PageRequest(categoryModel.getPage(), categoryModel.getMaxPageItem(), new Sorter(categoryModel.getSortName(), categoryModel.getSortBy()));
+			categoryModel.setListResult(categoryService.findAll(pageable));
+			categoryModel.setTotalItem(categoryService.getTotalItem());
+			categoryModel.setTotalPage((int) Math.ceil((double) categoryModel.getTotalItem() / categoryModel.getMaxPageItem()));
 			view = "/views/admin/category/category_list.jsp";
 		}
 		else if(categoryModel.getType().equals("edit")) {

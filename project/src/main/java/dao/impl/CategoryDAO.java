@@ -7,12 +7,20 @@ import java.util.List;
 import dao.ICategoryDAO;
 import mapper.CategoryMapper;
 import model.CategoryModel;
+import paging.IPageble;
 
 public class CategoryDAO  extends AbstractDAO<CategoryModel> implements ICategoryDAO {
 
-	public List<CategoryModel> findAll() {
-		String sql = "select * from category";
-		return query(sql, new CategoryMapper());
+	public List<CategoryModel> findAll(IPageble pageable) {
+		StringBuilder sql = new StringBuilder("select * from category");
+		if(pageable.getSorter() != null) {
+			sql.append(" order by "+ pageable.getSorter().getSortName() +" "+ pageable.getSorter().getSortBy() +" ");
+		}
+		if (pageable.getOffset() != null && pageable.getLimit() != null) {
+			sql.append("limit "+pageable.getOffset()+","+pageable.getLimit()+"");
+						
+		}
+		return query(sql.toString(), new CategoryMapper());
 	}
 
 	public CategoryModel findOne(Long id) {
@@ -48,6 +56,12 @@ public class CategoryDAO  extends AbstractDAO<CategoryModel> implements ICategor
 		String sql = "delete from category where id = ?";
 		update(sql, id);
 		
+	}
+
+	@Override
+	public int getTotalItem() {
+		String sql = "select count(*) from category";
+		return count(sql);
 	}
 
 
