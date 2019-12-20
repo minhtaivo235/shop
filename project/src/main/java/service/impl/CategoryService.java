@@ -49,7 +49,11 @@ public class CategoryService implements ICategoryService {
 
 	@Override
 	public int getTotalItem() {
-		// TODO Auto-generated method stub
 		return categoryDao.getTotalItem();
+	}
+
+	@Override
+	public List<CategoryModel> findAll() {
+		return categoryDao.findAll();
 	}
 }

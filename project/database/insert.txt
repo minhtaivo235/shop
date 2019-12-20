@@ -1,0 +1,9 @@
+insert into role(code,name) values('ADMIN','ADMIN');
+insert into role(code,name) values('USER','USER');
+
+insert into user(username,password,fullname,status, roleid,phone) values('admin','123456','admin',1,1,'0898374553');
+insert into user(username,password,fullname,status, roleid,phone) values('user','123456','nguyenvana',1,2,'111');
+insert into product(name,origin_price,sale_price,image,brand,categoryid,
+wire_type,status,glass_surface,material_case,size,guarantee,trademark,sex) 
+values('Citizen BM6772-05A Nam Eco-Drive',5410000,4328000,'citizen.jpg',
+'citizen',45,'dây da','con-hang','mặt tròn','inox','37mm','1 năm chính hãng','Nhật bản','Nam');

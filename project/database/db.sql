@@ -40,15 +40,16 @@ create table product(
 	origin_price int not null,
 	sale_price int not null,
     image varchar(255) not null,
-    brand varchar(255) null, 
+    brand varchar(255) null, -- nhan hieu
     categoryid bigint not null,
-    wire_type varchar(255) null, 
+    wire_type varchar(255) null, -- loai day
     status varchar(255),
-    glass_surface varchar(255),
-    material_case varchar(255), 
+    glass_surface varchar(255),  -- mat kinh
+    material_case varchar(255), -- chat lieu vo
     size varchar(255), 
-    guarantee varchar(255),
-    trademark varchar(255), 
+    guarantee varchar(255), -- bao hanh
+    trademark varchar(255), -- thuong hieu
+    sex varchar(255),
     createddate timestamp null,
     modifieddate timestamp null,
     createdby varchar(255) null,

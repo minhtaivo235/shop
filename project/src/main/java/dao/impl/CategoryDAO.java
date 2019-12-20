@@ -64,5 +64,11 @@ public class CategoryDAO  extends AbstractDAO<CategoryModel> implements ICategor
 		return count(sql);
 	}
 
+	@Override
+	public List<CategoryModel> findAll() {
+		StringBuilder sql = new StringBuilder("select * from category");
+		return query(sql.toString(), new CategoryMapper());
+	}
+
 
 }

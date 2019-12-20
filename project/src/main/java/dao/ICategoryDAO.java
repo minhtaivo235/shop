@@ -9,6 +9,7 @@ import paging.IPageble;
 
 public interface ICategoryDAO extends GenericDAO<CategoryModel> {
 	List<CategoryModel> findAll(IPageble pageable);
+	List<CategoryModel> findAll();
 	CategoryModel findOne(Long id);
 	CategoryModel findOneByCode(String code);
 	Long save(CategoryModel categoryModel);

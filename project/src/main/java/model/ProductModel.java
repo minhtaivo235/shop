@@ -14,26 +14,25 @@ public class ProductModel extends AbstractModel<ProductModel> {
 	private String size;	
 	private String guarantee;	
 	private String trademark;	
-	
+	private String sex;
 	public String getName() {
 		return name;
 	}
 	public void setName(String name) {
 		this.name = name;
 	}
-	public int getOrigin_price() {
+	public Integer getOrigin_price() {
 		return origin_price;
 	}
-	public void setOrigin_price(int origin_price) {
+	public void setOrigin_price(Integer origin_price) {
 		this.origin_price = origin_price;
 	}
-	public int getSale_price() {
+	public Integer getSale_price() {
 		return sale_price;
 	}
-	public void setSale_price(int sale_price) {
+	public void setSale_price(Integer sale_price) {
 		this.sale_price = sale_price;
 	}
-	
 	public String getImage() {
 		return image;
 	}
@@ -46,10 +45,10 @@ public class ProductModel extends AbstractModel<ProductModel> {
 	public void setBrand(String brand) {
 		this.brand = brand;
 	}
-	public long getCategoryid() {
+	public Long getCategoryid() {
 		return categoryid;
 	}
-	public void setCategoryid(long categoryid) {
+	public void setCategoryid(Long categoryid) {
 		this.categoryid = categoryid;
 	}
 	public String getWire_type() {
@@ -63,6 +62,12 @@ public class ProductModel extends AbstractModel<ProductModel> {
 	}
 	public void setStatus(String status) {
 		this.status = status;
+	}
+	public String getGlass_surface() {
+		return glass_surface;
+	}
+	public void setGlass_surface(String glass_surface) {
+		this.glass_surface = glass_surface;
 	}
 	public String getMaterial_case() {
 		return material_case;
@@ -82,30 +87,20 @@ public class ProductModel extends AbstractModel<ProductModel> {
 	public void setGuarantee(String guarantee) {
 		this.guarantee = guarantee;
 	}
-	
-	public void setOrigin_price(Integer origin_price) {
-		this.origin_price = origin_price;
-	}
-	public void setSale_price(Integer sale_price) {
-		this.sale_price = sale_price;
-	}
-	
-	public void setCategoryid(Long categoryid) {
-		this.categoryid = categoryid;
-	}
-	public String getGlass_surface() {
-		return glass_surface;
-	}
-	public void setGlass_surface(String glass_surface) {
-		this.glass_surface = glass_surface;
-	}
 	public String getTrademark() {
 		return trademark;
 	}
 	public void setTrademark(String trademark) {
 		this.trademark = trademark;
 	}
+	public String getSex() {
+		return sex;
+	}
+	public void setSex(String sex) {
+		this.sex = sex;
+	}
 	
+
 	
 
 }

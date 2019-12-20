@@ -1,6 +1,6 @@
 <%@include file="/common/taglib.jsp"%>
-<c:url var="APIurl" value="/api-admin-category" />
-<c:url var="CategoryURL" value="/admin-category" />
+<c:url var="APIurl" value="/api-admin-product" />
+<c:url var="ProductURL" value="/admin-product" />
 
 
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -28,16 +28,16 @@
 
 
 
-<title>Danh sách thể loại</title>
+<title>Danh sách sản phẩm</title>
 </head>
 
 <body>
 	<!-- Begin Page Content -->
 	<div class="container-fluid">
 		<div class="clearfix">
-			<h2>Quản lý thể loại</h2>
+			<h2>Quản lý sản phẩm</h2>
 			<div class="float-right">
-				<c:url var="addURL" value="/admin-category">
+				<c:url var="addURL" value="/admin-product">
 					<c:param name="type" value="edit" />
 				</c:url>
 				<a class="btn btn-success" data-toggle="tooltip" title="Thêm"
@@ -60,28 +60,52 @@
 
 
 
-		<form action="<c:url value='admin-category'/>" id="formSubmit"
+		<form action="<c:url value='admin-product'/>" id="formSubmit"
 			method="get">
 			<table class="table table-borderless w-100">
 				<thead>
 					<tr class="table-secondary">
 						<th></th>
-						<th><a href="#">Tên thể loại</a></th>
-						<th><a href="#">Mã thể loại</a></th>
-						<th style="text-align: center"><a href="#">Hành động</a></th>
+						<th><a href="#">Tên sản phẩm</a></th>
+						<th><a href="#">Giá niêm yết</a></th>
+						<th><a href="#">Giá bán ra</a></th>
+						<th><a href="#">Hình ảnh</a></th>
+						<th><a href="#">Nhãn hiệu</a></th>
+						<th><a href="#">Thể loại</a></th>
+						<th><a href="#">Loại dây</a></th>
+						<th><a href="#">Trạng thái</a></th>
+						<th><a href="#">Kiểu mặt kính</a></th>
+						<th><a href="#">Chất liệu vỏ</a></th>
+						<th><a href="#">Kích thước mặt số</a></th>
+						<th><a href="#">Bảo hành</a></th>
+						<th><a href="#">Thương hiệu</a></th>
+						<th><a href="#">Giới tính</a></th>
+						<th style="text-align: center"><a href="#">Tác vụ</a></th>
 					</tr>
 				</thead>
 				<tbody>
-					<c:forEach var="item" items="${categories.listResult}">
+					<c:forEach var="item" items="${model.listResult}">
 						<!--lặp list trong abstractModel -->
 						<tr>
 							<td><input type="checkbox" id="checkbox_${item.id}"
 								value="${item.id}"></td>
 							<td>${item.name}</td>
-							<td>${item.code}</td>
+							<td>${item.origin_price}</td>
+							<td>${item.sale_price}</td>
+							<td>${item.image}</td>
+							<td>${item.brand}</td>
+							<td>${item.categoryid}</td>
+							<td>${item.wire_type}</td>
+							<td>${item.status}</td>
+							<td>${item.glass_surface}</td>
+							<td>${item.material_case}</td>
+							<td>${item.size}</td>
+							<td>${item.guarantee}</td>
+							<td>${item.trademark}</td>
+							<td>${item.sex}</td>							
 							<td style="text-align: center">
 								<c:url var="editURL"
-									value="/admin-category">
+									value="/admin-product">
 									<c:param name="type" value="edit" />
 									<c:param name="id" value="${item.id}" />
 								</c:url> 
@@ -105,8 +129,8 @@
 
 	<script>
 	
-	var totalPages = ${categories.totalPage};
-	var currentPage = ${categories.page};
+	var totalPages = ${model.totalPage};
+	var currentPage = ${model.page};
 	var limit = 2;
 	$(function () {
 		window.pagObj = $('#pagination').twbsPagination({
@@ -143,11 +167,11 @@
 						contentType : 'application/json',
 						data : JSON.stringify(data),
 						success : function(result) {
-							window.location.href = "${CategoryURL}?type=list&maxPageItem=2&page=1&sortName=id&sortBy=desc&message=delete_success";
+							window.location.href = "${ProductURL}?type=list&maxPageItem=2&page=1&message=delete_success";
 							console.log(result);
 						},
 						error : function(error) {
-							window.location.href = "${CategoryURL}?type=list&message=error_system";
+							window.location.href = "${ProductURL}?type=list&message=error_system";
 						}
 					});
 		}

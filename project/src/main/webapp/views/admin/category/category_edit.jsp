@@ -31,14 +31,8 @@
 			</div>
 			<div class="form-group">
 				<div class="col-sm-12">
-
-
-
-
 					<input type="button" class="btn btn-white btn-warning btn-bold"
 						id="btnAddOrUpdate" />
-
-
 				</div>
 			</div>
 			<input type="hidden" value="${categories.id}" id="id" name="id" />
@@ -86,7 +80,7 @@
             data: JSON.stringify(data),
             dataType: 'json',
             success: function (result) {
-            	window.location.href = "${CategoryURL}?type=list&message=update_success";
+            	window.location.href = "${CategoryURL}?type=list&maxPageItem=2&page=1&sortName=id&sortBy=desc&message=update_success";
             	//console.log(result);
             },
             error: function (error) {
