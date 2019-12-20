@@ -193,41 +193,9 @@
      
     })
     
-	$("#btnAddOrUpdate").on("click", function() {
-			var url = "${UploadImage}";
-			var form = $("#sampleUploadFrm")[0];
-			var data = new FormData(form);
-			/* var data = {};
-			data['key1'] = 'value1';
-			data['key2'] = 'value2'; */
-			$.ajax({
-				type : "POST",
-				encType : "multipart/form-data",
-				url : url,
-				cache : false,
-				processData : false,
-				contentType : false,
-				data : data,
-				success : function(msg) {
-					/* var response = JSON.parse(msg);
-					var status = response.status; */
-					
-					console.log(msg);
-					/* if (status == 1) {
-						alert("File has been uploaded successfully");
-					} else {
-						alert("Couldn't upload file");
-					} */
-				},
-				error : function(msg) {
-					alert("Couldn't upload file");
-				}
-			});
-		});	
-
-   
-    function add(data) {
+      function add(data) {
         $.ajax({
+        	async: false,
             url: '${APIurl}',
             type: 'POST',
             contentType: 'application/json',
@@ -245,6 +213,7 @@
     }
     function update(data) {
         $.ajax({
+        	async: false,
             url: '${APIurl}',
             type: 'PUT',
             contentType: 'application/json',
@@ -261,6 +230,57 @@
         });
     }
     
+    
+	$("#btnAddOrUpdate").on("click", function() {
+			var url = "${UploadImage}";
+			var form = $("#sampleUploadFrm")[0];
+			var data1 = new FormData(form);
+			var img = "";			
+			/* var data = {};
+			data['key1'] = 'value1';
+			data['key2'] = 'value2'; */
+			$.ajax({
+				async: false,
+				type : "POST",
+				encType : "multipart/form-data",
+				url : url,
+				cache : false,
+				processData : false,
+				contentType : false,
+				data : data1,
+				success : function(msg) {
+					/* var response = JSON.parse(msg);
+					var status = response.status; */
+					img = msg;
+					console.log(msg);
+					/* if (status == 1) {
+						alert("File has been uploaded successfully");
+					} else {
+						alert("Couldn't upload file");
+					} */
+				},
+				error : function(msg) {
+					alert("Couldn't upload file");
+				}
+			});
+			var data = {};
+	        var formData = $('#formSubmit').serializeArray();
+	        $.each(formData, function (i, v) {
+	            data[""+v.name+""] = v.value;
+	        });
+			
+			data["image"] = img; 
+	        //data["content"] = editor.getData();
+	        var id = $('#id').val();
+	        if (id == "") {
+	        	add(data);
+	        } else {
+	            update(data);
+	        }
+		});	
+
+   
+  
     function upload(data,nameImg) {
     	$.ajax({
 			type : "POST",

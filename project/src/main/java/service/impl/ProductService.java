@@ -41,6 +41,8 @@ public class ProductService implements IProductService {
 	@Override
 	public ProductModel save(ProductModel productModel) {
 		productModel.setCreatedDate(new Timestamp(System.currentTimeMillis()));
+		productModel.setModifiedDate(new Timestamp(System.currentTimeMillis()));
+		productModel.setModifiedBy("");
 		Long categoryId = productDao.save(productModel);
 		return productDao.findOne(categoryId);
 	}

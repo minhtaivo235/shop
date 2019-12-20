@@ -52,7 +52,7 @@ public class ProductDAO extends AbstractDAO<ProductModel> implements IProductDAO
 		sql.append(" size, guarantee,");
 		sql.append(" trademark, sex,");
 		sql.append(" createddate, modifieddate,");
-		sql.append(" createdby, modifiedby,");
+		sql.append(" createdby, modifiedby)");
 		sql.append(" VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
 		return insert(sql.toString(), model.getName(), model.getOrigin_price(), model.getSale_price(),
 				model.getImage(), model.getBrand(), model.getCategoryid(), model.getWire_type(), model.getStatus(),
